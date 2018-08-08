@@ -7,6 +7,9 @@ package com;
 
 import dao.Usuario;
 import dao.UsuarioRepositorio;
+import java.util.ArrayList;
+import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import org.primefaces.context.RequestContext;
@@ -18,6 +21,7 @@ import org.primefaces.context.RequestContext;
 @Named(value = "registrarse")
 @RequestScoped
 public class registrarse extends Usuario{
+    private List<Usuario> listaCorreos=new ArrayList<Usuario>();
 
     /**
      * Creates a new instance of registrarse
@@ -29,24 +33,27 @@ public class registrarse extends Usuario{
         UsuarioRepositorio.createPersona(Usuario.getUsuario(this));
         return "paginaPrincipal";
     }
-    
-    
-     public void existeContraseña(){
-         RequestContext context = RequestContext.getCurrentInstance();
-         boolean verifica=true;
-        if(this.getContraseña().equals(this.getContraseñaConf())){
-            context.execute("obtener("+verifica+")");
-        }
-        else{
-            verifica=false;
-            context.execute("obtener("+verifica+")");
-        }
+
+    public List<Usuario> getListaCorreos() {
+        return listaCorreos;
+    }
+
+    @PostConstruct
+    public void leeCorreos(){
+        listaCorreos=UsuarioRepositorio.readPersonas();
     }
     
-    
-   
-    
-    
-   
-                        
+      public void verificaCorreo(){
+        boolean salida;
+        RequestContext context = RequestContext.getCurrentInstance();
+        for (Usuario usuario: listaCorreos) {
+            if (usuario.getCorreo().equals(this.getCorreo())) {
+                salida=true;
+                context.execute("obtener("+salida+")");
+            }else{
+                salida=false;
+                context.execute("obtener("+salida+")");
+            }
+        }
+    }               
 }

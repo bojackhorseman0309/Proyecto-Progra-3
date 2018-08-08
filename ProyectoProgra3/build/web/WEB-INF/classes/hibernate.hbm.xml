@@ -47,8 +47,5 @@ Contributor(s):
         <property name="contraseña">
             <column name="contraseña"></column>
         </property>
-        <property name="contraseñaConf">
-            <column name="contraseñaConf"></column>
-        </property>
     </class>
 </hibernate-mapping>

@@ -5,9 +5,7 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-    <h:head>
-        <script src="resources/js/ingresar.js" type="text/javascript"></script>
-    </h:head>
+    
     <body>
 
         <ui:composition template="./template/tempReg.xhtml">
@@ -17,21 +15,22 @@
                 <h:form id="formulario">
                     <fieldset id="fieldsetReg">
                         <legend>Registro</legend>
-                        <label>Correo Electronico: </label><h:inputText id="correoReg" value="#{registrarse.correo}"></h:inputText>
+
+                         <h:panelGrid columns="2" id="matchGrid" cellpadding="5"> 
+                            <label>Correo Electronico: </label><p:inputText id="correoReg" value="#{registrarse.correo}" 
+                                                                            required="true" requiredMessage="Por favor llenar este espacio">
+                            <p:ajax event="blur" rendered="id" listener="#{registrarse.verificaCorreo()}"/></p:inputText>
+                         
+                            <h:outputLabel for="pwd1" value="Contraseña:" />
+                            <p:password id="pwd1" value="#{registrarse.contraseña}" match="pwd2" label="Contraseña" required="true" requiredMessage="Por favor llenar este espacio"/>
+
+                            <h:outputLabel for="pwd2" value="Confirmar Contraseña:" />
+                            <p:password id="pwd2" value="#{registrarse.contraseña}" label="Confirmar Contraseña" required="true" requiredMessage="Por favor llenar este espacio" />
+                        </h:panelGrid>  
                         
-                          <div>
-                                 <label>Contraseña: </label><h:inputSecret id="contraseñaReg" value="#{registrarse.contraseña}"  >
-                             </h:inputSecret>
-                        </div>
-                       
-                        <div>
-                            <label>Confirmar Contraseña: </label><h:inputSecret id="confConReg" value="#{registrarse.contraseñaConf}">
-                             <p:ajax event="blur" rendered="confConReg" listener="#{registrarse.existeContraseña()}"></p:ajax>                                                   
-                        </h:inputSecret>
-                            <h:message id="mensaje" for="confConReg"></h:message>
-                        </div>                   
+                        <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
                         
-                        <h:commandButton value="Enviar" action="#{registrarse.registro()}" id="registro"></h:commandButton>
+                        <p:commandButton value="Enviar" action="#{registrarse.registro()}" id="registro" update="matchGrid"></p:commandButton>
                     </fieldset>
                 </h:form>
             </ui:define>

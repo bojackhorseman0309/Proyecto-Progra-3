@@ -2,19 +2,28 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
 
     <body>
 
         <ui:composition template="./template/tempReg.xhtml">
 
             <ui:define name="content">
-                  <h:form>
+                <h:form id="formIden">
                     <fieldset id="fieldsetId">
                         <legend>Identificacion</legend>
-                        <label>Correo Electronico: </label><h:inputText id="correoId" value="#{identificarse.correoIden}"></h:inputText>
-                        <label>Contraseña: </label><h:inputSecret id="contraseñaId" value="#{identificarse.contraseñaIden}"></h:inputSecret>
+                        <label>Correo Electronico: </label><h:inputText id="correoId" value="#{identificarse.correoIden}"
+                                                                        required="true" requiredMessage="Por favor llenar este espacio">
+                            <p:ajax event="blur" rendered="correoId" listener="#{identificarse.verificaCorreo()}"/></h:inputText>
+                            <div id="mensajeId"></div>
+                            
+                        <label>Contraseña: </label><h:inputSecret id="contraseñaId" value="#{identificarse.contraseñaIden}" 
+                                                                  required="true" requiredMessage="Por favor llenar este espacio">
+                            <p:ajax event="blur" rendered="contraseñaId" listener="#{identificarse.verificaContra()}"/></h:inputSecret>
+                        <div id="mens"></div>
                         <h:commandButton value="Enviar" action="#{identificarse.verificaLogin()}" id="autenticacion"></h:commandButton>
+                        
                     </fieldset>
                 </h:form>
             </ui:define>

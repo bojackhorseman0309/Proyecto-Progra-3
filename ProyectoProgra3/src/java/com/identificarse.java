@@ -12,6 +12,7 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
+import org.primefaces.context.RequestContext;
 
 /**
  *
@@ -40,14 +41,36 @@ public class identificarse{
     
     
     public String verificaLogin(){
-        for (Usuario datos: datosUsuario) {
-            if (datos.getCorreo().equals(correoIden)) {
-                if (datos.getContraseña().equals(contraseñaIden)) {
-                    return "inicio";
-                }
+        return "inicio";
+    }
+    
+    
+    public void verificaCorreo(){
+        RequestContext context = RequestContext.getCurrentInstance();
+         boolean salida=true;      
+        for (Usuario usuario: datosUsuario) {
+            if (usuario.getCorreo().equals(correoIden)) {
+                salida=false;
+                break;
+            }else{
+                salida=true;
             }
         }
-        return "paginaPrincipal";
+        context.execute("obtenerIden("+salida+")");
+    }
+    
+      public void verificaContra(){
+        RequestContext context = RequestContext.getCurrentInstance();
+         boolean salida=true;      
+        for (Usuario usuario: datosUsuario) {
+            if (usuario.getContraseña().equals(contraseñaIden)) {
+                salida=false;
+                break;
+            }else{
+                salida=true;
+            }
+        }
+         context.execute("obtenerCon("+salida+")");
     }
 
     public String getCorreoIden() {

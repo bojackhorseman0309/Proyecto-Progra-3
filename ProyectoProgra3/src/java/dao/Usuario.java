@@ -12,7 +12,6 @@ package dao;
 public class Usuario {
     private String correo;
     private String contraseña;
-    private String contraseñaConf;
 
     public Usuario() {
     }
@@ -23,7 +22,6 @@ public class Usuario {
         Usuario usuario=new Usuario();
         usuario.correo= usuarioP.correo;
         usuario.contraseña=usuarioP.contraseña;
-        usuario.contraseñaConf=usuarioP.contraseñaConf;
         return usuario;
     }
 
@@ -43,13 +41,6 @@ public class Usuario {
         this.contraseña = contraseña;
     }
 
-    public String getContraseñaConf() {
-        return contraseñaConf;
-    }
-
-    public void setContraseñaConf(String contraseñaConf) {
-        this.contraseñaConf = contraseñaConf;
-    }
     
     
 }

@@ -6,7 +6,7 @@
 
 function obtener(parametro){
     if(parametro){
-        $(document.getElementById("mensaje")).append("Contraseña no es la misma");
+        $(document.getElementById("mensaje")).append("Correo ya existe");
         $(document.getElementById("formulario:registro")).prop('disabled', true);
     }else{
          $(document.getElementById("mensaje")).empty();
