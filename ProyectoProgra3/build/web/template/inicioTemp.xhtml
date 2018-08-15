@@ -22,19 +22,20 @@
                     <p:growl id="messages"/>
 
                     <p:menubar>
-                        <p:submenu label="File" icon="ui-icon-document">
-                            <p:submenu label="New" icon="ui-icon-contact">
-                                <p:menuitem value="Project" url="#" />
-                                <p:menuitem value="Other" url="#" />
+                        <p:submenu label="Productos" icon="ui-icon-document">
+                            <p:submenu label="Categorias" icon="ui-icon-contact">
+                                <p:menuitem value="Deportivo" url="../faces/deportivos.xhtml" />
+                                <p:menuitem value="Electronico" url="../faces/electronicos.xhtml" />
                             </p:submenu>
                             <p:menuitem value="Open" url="#" />
                             <p:separator />
                             <p:menuitem value="Quit" url="#" />
                         </p:submenu>
 
-                        <p:submenu label="Edit" icon="ui-icon-pencil">
-                            <p:menuitem value="Undo" url="#" icon="ui-icon-arrowreturnthick-1-w" />
-                            <p:menuitem value="Redo" url="#" icon="ui-icon-arrowreturnthick-1-e" />
+                        <p:submenu label="Usuario" icon="ui-icon-pencil">
+                            <p:menuitem value="Editar perfil" url="#" icon="ui-icon-arrowreturnthick-1-w" />
+                            <p:menuitem value="Ver perfil" url="#" icon="ui-icon-arrowreturnthick-1-e" />
+                            <p:menuitem value="Ver carrito" url="../faces/carrito.xhtml" icon="ui-icon-arrowreturnthick-1-e" />
                         </p:submenu>
 
 

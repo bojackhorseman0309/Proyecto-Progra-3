@@ -50,5 +50,6 @@ Contributor(s):
     <property name="hibernate.format_sql">true</property>
     <property name="hibernate.cache.use_query_cache">false</property>
     <mapping resource="hibernate.hbm.xml"/>
+    <mapping resource="hibernate1.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>
