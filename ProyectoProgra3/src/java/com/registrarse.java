@@ -33,6 +33,14 @@ public class registrarse extends Usuario{
         UsuarioRepositorio.createPersona(Usuario.getUsuario(this));
         return "paginaPrincipal";
     }
+    
+    public String updateContra(){
+        UsuarioRepositorio.updatePersona(Usuario.getUsuario(this));
+        return "paginaPrincipal";
+    }
+    
+    
+    
 
     public List<Usuario> getListaCorreos() {
         return listaCorreos;
@@ -50,10 +58,30 @@ public class registrarse extends Usuario{
             if (usuario.getCorreo().equals(this.getCorreo())) {
                 salida=true;
                 context.execute("obtener("+salida+")");
+                break;
             }else{
                 salida=false;
                 context.execute("obtener("+salida+")");
+                break;
             }
         }
     }               
+      
+      
+         public void verificaCorreoUpdateCon(){
+        boolean salida;
+        RequestContext context = RequestContext.getCurrentInstance();
+        for (Usuario usuario: listaCorreos) {
+            if (usuario.getCorreo().equals(this.getCorreo())) {
+                salida=false;
+                context.execute("obtenerUpdate("+salida+")");
+                break;
+            }else{
+                salida=true;
+                context.execute("obtenerUpdate("+salida+")");
+               
+            }
+        }
+    }         
+         
 }

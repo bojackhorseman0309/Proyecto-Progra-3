@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>    
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <title>Facelet Title</title>
+        <script src="resources/js/jquery-3.3.1.min.js" type="text/javascript"></script>
+        <script src="resources/js/creaProductos.js" type="text/javascript"></script>
+        <link href="resources/css/cssLayout.css" rel="stylesheet" type="text/css"/>
+        <link href="resources/css/default.css" rel="stylesheet" type="text/css"/>
+        <link href="resources/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    </h:head>
+    <h:body>
+        <div id="top" class="container-fluid">
+            <img src="https://lancetalent.com/wp-content/uploads/2017/05/ecommerceok.png" style="width: 180px; height:150px"></img>
+                    <h1 style="color: white; display: inline-block; font-size: 40px">El Mercadito</h1>
+                      <h:form>  
+                        <p:growl id="messages"/>
+
+                        <p:menubar>
+                            <p:submenu label="Tienda" icon="fa-cart-plus">      
+                                    <p:menuitem value="Inicio" url="../faces/paginaPrincipal.xhtml"></p:menuitem>
+                                    <p:submenu label="Productos">
+                                        <p:menuitem value="Ver productos" url="../faces/productos.xhtml"></p:menuitem>
+                                        <p:menuitem value="Añadir productos" url="../faces/añadirProducto.xhtml"></p:menuitem>
+                                    </p:submenu>
+                            </p:submenu>
+
+                            <f:facet name="options">
+                                <p:inputText style="margin-right:10px" placeholder="Buscar"/>
+                                <p:commandButton type="button" value="Salir" icon="ui-icon-extlink" />
+                            </f:facet>
+                        </p:menubar>
+                    </h:form> 
+        </div>
+         
+    </h:body>
+</html>
+

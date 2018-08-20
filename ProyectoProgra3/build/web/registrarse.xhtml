@@ -18,9 +18,12 @@
 
                          <h:panelGrid columns="2" id="matchGrid" cellpadding="5"> 
                             <label>Correo Electronico: </label><p:inputText id="correoReg" value="#{registrarse.correo}" 
-                                                                            required="true" requiredMessage="Por favor llenar este espacio">
-                            <p:ajax event="blur" rendered="id" listener="#{registrarse.verificaCorreo()}"/></p:inputText>
-                         
+                                                                            required="true" requiredMessage="Por favor llenar este espacio"
+                                                                            validatorMessage="No es un formato de correo correcto">
+                            <f:validateRegex pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$"></f:validateRegex>
+                            <p:ajax event="blur" rendered="correoReg" listener="#{registrarse.verificaCorreo()}"/>
+                            </p:inputText>
+                            
                             <h:outputLabel for="pwd1" value="Contraseña:" />
                             <p:password id="pwd1" value="#{registrarse.contraseña}" match="pwd2" label="Contraseña" required="true" requiredMessage="Por favor llenar este espacio"/>
 
@@ -29,6 +32,7 @@
                         </h:panelGrid>  
                         
                         <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+                        <div id="correoRegMens" class="alert alert-danger"></div>
                         
                         <p:commandButton value="Enviar" action="#{registrarse.registro()}" id="registro" update="matchGrid"></p:commandButton>
                     </fieldset>

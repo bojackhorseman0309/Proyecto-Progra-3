@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./template/tempPrin.xhtml">
+
+            <ui:define name="content">
+                <div class="container-fluid">
+                       <h:form id="formularioUp">
+                    <fieldset id="fieldsetReg">
+                        <legend>Editar Contraseña</legend>
+
+                         <h:panelGrid columns="2" id="matchGrid" cellpadding="5"> 
+                            <label>Correo Electronico: </label><p:inputText id="correoUp" value="#{registrarse.correo}" 
+                                                                            required="true" requiredMessage="Por favor llenar este espacio"
+                                                                            validatorMessage="No es un formato de correo correcto">
+                            <f:validateRegex pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$"></f:validateRegex>
+                            <p:ajax event="blur" rendered="correoUp" listener="#{registrarse.verificaCorreoUpdateCon()}"/>
+                            </p:inputText>
+                            
+                            <h:outputLabel for="pwd1Up" value="Contraseña nueva:" />
+                            <p:password id="pwd1Up" value="#{registrarse.contraseña}" match="pwd2Up" label="Contraseña" required="true" requiredMessage="Por favor llenar este espacio"/>
+
+                            <h:outputLabel for="pwd2Up" value="Confirmar Contraseña:" />
+                            <p:password id="pwd2Up" value="#{registrarse.contraseña}" label="Confirmar Contraseña" required="true" requiredMessage="Por favor llenar este espacio" />
+                        </h:panelGrid>  
+                        
+                        <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+                        <div id="editCon" class="alert alert-danger"></div>
+                        
+                        <p:commandButton value="Modificar" action="#{registrarse.updateContra()}" id="registroUp" update="matchGrid"></p:commandButton>
+                    </fieldset>
+                </h:form>
+                </div>
+              
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

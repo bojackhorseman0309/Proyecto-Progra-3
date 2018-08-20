@@ -20,7 +20,7 @@ import org.primefaces.context.RequestContext;
  */
 @Named(value = "identificarse")
 @RequestScoped
-public class identificarse{
+public class identificarse extends Usuario{
    private List<Usuario> datosUsuario=new ArrayList<Usuario>();
    private String correoIden;
    private String contraseñaIden;
@@ -41,7 +41,7 @@ public class identificarse{
     
     
     public String verificaLogin(){
-        return "inicio";
+        return "productos";
     }
     
     
@@ -59,6 +59,21 @@ public class identificarse{
         context.execute("obtenerIden("+salida+")");
     }
     
+    
+    public void verificaCorreoEnBorrar(){
+        RequestContext context = RequestContext.getCurrentInstance();
+         boolean salida=true;      
+        for (Usuario usuario: datosUsuario) {
+            if (usuario.getCorreo().equals(this.getCorreo())) {
+                salida=false;
+                break;
+            }else{
+                salida=true;
+            }
+        }
+        context.execute("verificaCorreo("+salida+")");
+    }
+    
       public void verificaContra(){
         RequestContext context = RequestContext.getCurrentInstance();
          boolean salida=true;      
@@ -72,6 +87,23 @@ public class identificarse{
         }
          context.execute("obtenerCon("+salida+")");
     }
+      
+      public void borraUsuario(){
+           RequestContext context = RequestContext.getCurrentInstance();
+         boolean salida=true;   
+         for (Usuario usuarioCorreo: datosUsuario) {
+            if (usuarioCorreo.getCorreo().equals(this.getCorreo()) && usuarioCorreo.getContraseña().equals(this.getContraseña())) {
+                UsuarioRepositorio.deletePersona(Usuario.getUsuario(this));
+                salida=true;
+                break;
+            }else{
+                salida=false;
+            }
+        }
+                  context.execute("borrarUsuario("+salida+")");
+      }
+      
+      
 
     public String getCorreoIden() {
         return correoIden;

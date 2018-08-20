@@ -7,65 +7,64 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <h:head>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <link href="../resources/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <link href="../resources/css/cssLayout.css" rel="stylesheet" type="text/css"/>
         <link href="../resources/css/default.css" rel="stylesheet" type="text/css"/>
         <title>Facelets Template</title>
+        <script src="../resources/js/editCon.js" type="text/javascript"></script>
+        <script src="../resources/js/obtenerUsuario.js" type="text/javascript"></script>
+        <script src="../resources/js/borrarVerifica.js" type="text/javascript"></script>
+        
     </h:head>
 
     <h:body>
 
-        <div id="top">
-            <ui:insert name="top">
-                <h1>Nombre de la tienda</h1>
-                  <h:form>  
-                    <p:growl id="messages"/>
+        <div id="top" class="container-fluid">
+                <ui:insert name="top" >
+                    <img src="https://lancetalent.com/wp-content/uploads/2017/05/ecommerceok.png" style="width: 180px; height:150px"></img>
+                    <h1 style="color: white; display: inline-block; font-size: 40px">El Mercadito</h1>
+                      <h:form>  
+                        <p:growl id="messages"/>
 
-                    <p:menubar>
-                        <p:submenu label="File" icon="ui-icon-document">
-                            <p:submenu label="New" icon="ui-icon-contact">
-                                <p:menuitem value="Project" url="#" />
-                                <p:menuitem value="Other" url="#" />
+                        <p:menubar>
+                            <p:submenu label="Tienda" icon="fa-cart-plus">      
+                                    <p:menuitem value="Inicio" url="../faces/paginaPrincipal.xhtml"></p:menuitem>
+                                    <p:menuitem value="Productos" url="../faces/productos.xhtml" />
                             </p:submenu>
-                            <p:menuitem value="Open" url="#" />
-                            <p:separator />
-                            <p:menuitem value="Quit" url="#" />
-                        </p:submenu>
 
-                        <p:submenu label="Edit" icon="ui-icon-pencil">
-                            <p:menuitem value="Undo" url="#" icon="ui-icon-arrowreturnthick-1-w" />
-                            <p:menuitem value="Redo" url="#" icon="ui-icon-arrowreturnthick-1-e" />
-                        </p:submenu>
-
-
-                        <f:facet name="options">
-                            <p:inputText style="margin-right:10px" placeholder="Search"/>
-                            <p:commandButton type="button" value="Logout" icon="ui-icon-extlink" />
-                        </f:facet>
-                    </p:menubar>
-                </h:form>
-            </ui:insert>
-        </div>
-        <div>
-            <div id="left">
+                            <f:facet name="options">
+                                <p:inputText style="margin-right:10px" placeholder="Buscar"/>
+                                <p:commandButton type="button" value="Salir" icon="ui-icon-extlink" />
+                            </f:facet>
+                        </p:menubar>
+                    </h:form>
+                </ui:insert>
+            </div>
+            <div>
+            
+            <div id="left" class="container-fluid">
                 <ui:insert name="left"> <h:form>
                         <p:panelMenu style="width: 100%">
                             <p:submenu label="Ingreso" icon="ui-icon-clipboard">
-                                <p:menuitem value="Registrarse" icon="ui-icon-plus" url="../faces/registrarse.xhtml"></p:menuitem>
-                                <p:menuitem value="Identificarse" icon="ui-icon-document" url="../faces/identificarse.xhtml"></p:menuitem>
+                                <p:menuitem value="Registrarse" icon="fa-user-plus" url="../faces/registrarse.xhtml"></p:menuitem>
+                                <p:menuitem value="Identificarse" icon="fa-user" url="../faces/identificarse.xhtml"></p:menuitem>
+                                <p:menuitem value="Cambiar Contraseña" icon="fa-user" url="../faces/editarCon.xhtml"></p:menuitem>
+                                <p:menuitem value="Borrar Usuario" icon="fa-user" url="../faces/borrarUsuario.xhtml"></p:menuitem>
                             </p:submenu>
                             <p:separator/>
                         </p:panelMenu>
-                    </h:form></ui:insert>
+                    </h:form>
+                </ui:insert>
             </div>
             <div>
-                <div id="content" class="right_content">
+                <div id="content" class="right_content container-fluid">
                     <ui:insert name="content"></ui:insert>
                 </div>
             </div>
         </div>
-        <div id="bottom">
+        <div id="bottom" class="container-fluid">
             <ui:insert name="bottom"></ui:insert>
         </div>
 

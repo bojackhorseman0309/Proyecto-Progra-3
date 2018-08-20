@@ -4,13 +4,20 @@
  * and open the template in the editor.
  */
 
+$(document).ready(function(){
+    $("#correoRegMens").hide();
+});
+
 function obtener(parametro){
-    if(parametro){
-        $(document.getElementById("mensaje")).append("Correo ya existe");
+    $(document.getElementById("correoRegMens")).empty();
+    if(parametro){ 
+        $("#correoRegMens").show();
+        $(document.getElementById("correoRegMens")).append("<strong>¡Error!</strong> Correo ya existe");
         $(document.getElementById("formulario:registro")).prop('disabled', true);
     }else{
-         $(document.getElementById("mensaje")).empty();
+         $(document.getElementById("correoRegMens")).empty();
         $(document.getElementById("formulario:registro")).prop('disabled', false);
+        $("#correoRegMens").hide();
     }
 }
 

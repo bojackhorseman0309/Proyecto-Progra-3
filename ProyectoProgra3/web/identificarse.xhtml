@@ -16,13 +16,18 @@
                         <label>Correo Electronico: </label><h:inputText id="correoId" value="#{identificarse.correoIden}"
                                                                         required="true" requiredMessage="Por favor llenar este espacio">
                             <p:ajax event="blur" rendered="correoId" listener="#{identificarse.verificaCorreo()}"/></h:inputText>
-                            <div id="mensajeId"></div>
+                          
                             
                         <label>Contraseña: </label><h:inputSecret id="contraseñaId" value="#{identificarse.contraseñaIden}" 
                                                                   required="true" requiredMessage="Por favor llenar este espacio">
-                            <p:ajax event="blur" rendered="contraseñaId" listener="#{identificarse.verificaContra()}"/></h:inputSecret>
-                        <div id="mens"></div>
-                        <h:commandButton value="Enviar" action="#{identificarse.verificaLogin()}" id="autenticacion"></h:commandButton>
+                            <p:ajax event="blur" rendered="contraseñaId" listener="#{identificarse.verificaContra()}"/>
+                          
+                        </h:inputSecret>
+                            
+                        <div id="mensajeId" class="alert alert-danger"></div>
+                        <div id="mens" class="alert alert-danger"></div>
+                        <h:commandButton value="Enviar" action="#{identificarse.verificaLogin()}" id="autenticacion">
+                        </h:commandButton>
                         
                     </fieldset>
                 </h:form>
